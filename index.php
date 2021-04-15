@@ -29,6 +29,7 @@ $data_penjualan = query("SELECT pelanggan.nama_pelanggan, barang.nama_brg, pelan
             <th>Kota</th>
             <th>Harga</th>
             <th>Tanggal Transaksi</th>
+            <th>Aksi</th>
         </tr>
 
         <?php foreach ($data_penjualan as $row) : ?>
@@ -39,6 +40,10 @@ $data_penjualan = query("SELECT pelanggan.nama_pelanggan, barang.nama_brg, pelan
             <td><?= $row["kota"] ?></td>
             <td><?= $row["harga"] ?></td>
             <td><?= $row["tgl_jual"] ?></td>
+            <td>
+                <a href="">Edit</a> |
+                <a href="">Hapus</a>
+            </td>
         </tr>
         <?php endforeach ?>
     </table>
