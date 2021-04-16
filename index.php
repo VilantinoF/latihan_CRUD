@@ -1,7 +1,15 @@
 <?php
 require 'functions.php';
 
-$data_penjualan = query("SELECT pelanggan.nama_pelanggan, barang.nama_brg, pelanggan.alamat, pelanggan.kota, barang.harga, jual.tgl_jual FROM ((jual INNER JOIN pelanggan ON pelanggan.kode_pelanggan=jual.kode_pelanggan) INNER JOIN barang ON barang.kode_brg=jual.kode_brg)");
+$data_mhs = query("SELECT * FROM mahasiswa");
+
+if (isset($_POST["submit"])) {
+    if (add($_POST) > 0) {
+        echo "Data berhasil ditambahkan";
+    } else {
+        echo "Data Gagal Ditambahkan";
+    }
+}
 
 ?>
 
@@ -20,31 +28,58 @@ $data_penjualan = query("SELECT pelanggan.nama_pelanggan, barang.nama_brg, pelan
 </head>
 
 <body>
-    <h1>Tabel Penjualan</h1>
+    <h1>Tabel Mahasiswa</h1>
+
+    <form action="/Latihan CRUD/index.php" method="POST">
+        <ul>
+            <li>
+                <label for="nama">Nama :</label>
+                <input type="text" name="nama" id="nama" required>
+            </li>
+            <li>
+                <label for="nim">NIM :</label>
+                <input type="text" name="nim" id="nim" maxlength="12" required>
+            </li>
+            <li>
+                <label for="alamat">Alamat :</label>
+                <input type="text" name="alamat" id="alamat" required>
+            </li>
+            <li>
+                <label for="ttl">TTL :</label>
+                <input type="text" name="ttl" id="ttl">
+            </li>
+            <li>
+                <label for="no_HP">No Hp :</label>
+                <input type="text" name="no_HP" id="no_HP" maxlength="12">
+            </li>
+            <li>
+                <button type="submit" name="submit">SUBMIT</button>
+            </li>
+        </ul>
+    </form>
+
     <table border="1px" cellpadding="10px" cellspacing="0">
         <tr>
-            <th>Nama Pelanggan</th>
-            <th>Barang</th>
+            <th>NIM</th>
+            <th>Nama Mahasiswa</th>
             <th>Alamat</th>
-            <th>Kota</th>
-            <th>Harga</th>
-            <th>Tanggal Transaksi</th>
+            <th>TTL</th>
+            <th>No HP</th>
             <th>Aksi</th>
         </tr>
 
-        <?php foreach ($data_penjualan as $row) : ?>
-        <tr>
-            <td><?= $row["nama_pelanggan"] ?></td>
-            <td><?= $row["nama_brg"]; ?></td>
-            <td><?= $row["alamat"] ?></td>
-            <td><?= $row["kota"] ?></td>
-            <td><?= $row["harga"] ?></td>
-            <td><?= $row["tgl_jual"] ?></td>
-            <td>
-                <a href="">Edit</a> |
-                <a href="">Hapus</a>
-            </td>
-        </tr>
+        <?php foreach ($data_mhs as $row) : ?>
+            <tr>
+                <td><?= $row["nama_mhs"]; ?></td>
+                <td><?= $row["nim"] ?></td>
+                <td><?= $row["alamat"] ?></td>
+                <td><?= $row["ttl"] ?></td>
+                <td><?= $row["no_HP"] ?></td>
+                <td>
+                    <a href="">Edit</a> |
+                    <a href="">Hapus</a>
+                </td>
+            </tr>
         <?php endforeach ?>
     </table>
 </body>

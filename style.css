@@ -9,3 +9,31 @@ body h1 {
 table {
     margin: auto;
 }
+
+form {
+    display: grid;
+    width: max-content;
+    margin-bottom: 40px;
+    margin-right: auto;
+    margin-left: auto;
+    grid-template-columns: 200px 1fr;
+    grid-gap: 15px;
+    border: 1px solid black;
+}
+
+form ul li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+form ul {
+    margin: auto;
+}
+
+label {
+    grid-column: 1/2;
+}
+
+input {
+    grid-column: 2/3;
+}
