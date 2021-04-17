@@ -5,7 +5,13 @@ $data_mhs = query("SELECT * FROM mahasiswa");
 
 if (isset($_POST["submit"])) {
     if (add($_POST) > 0) {
-        echo "Data berhasil ditambahkan";
+        echo "
+                <script>
+                    alert('Data berhasil ditambahkan');
+                    document.location.href = '';
+                </script>
+
+        ";
     } else {
         echo "Data Gagal Ditambahkan";
     }
@@ -71,13 +77,13 @@ if (isset($_POST["submit"])) {
         <?php foreach ($data_mhs as $row) : ?>
             <tr>
                 <td><?= $row["nama_mhs"]; ?></td>
-                <td><?= $row["nim"] ?></td>
-                <td><?= $row["alamat"] ?></td>
-                <td><?= $row["ttl"] ?></td>
-                <td><?= $row["no_HP"] ?></td>
+                <td><?= $row["nim"]; ?></td>
+                <td><?= $row["alamat"]; ?></td>
+                <td><?= $row["ttl"]; ?></td>
+                <td><?= $row["no_HP"]; ?></td>
                 <td>
                     <a href="">Edit</a> |
-                    <a href="">Hapus</a>
+                    <a href="delete.php?id=<?= $row["id"]; ?>">Hapus</a>
                 </td>
             </tr>
         <?php endforeach ?>
