@@ -13,6 +13,7 @@ table {
 form {
     display: grid;
     width: max-content;
+    margin-top: 50px;
     margin-bottom: 40px;
     margin-right: auto;
     margin-left: auto;
@@ -28,12 +29,4 @@ form ul li {
 
 form ul {
     margin: auto;
-}
-
-label {
-    grid-column: 1/2;
-}
-
-input {
-    grid-column: 2/3;
 }

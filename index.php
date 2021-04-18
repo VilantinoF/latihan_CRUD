@@ -5,13 +5,7 @@ $data_mhs = query("SELECT * FROM mahasiswa");
 
 if (isset($_POST["submit"])) {
     if (add($_POST) > 0) {
-        echo "
-                <script>
-                    alert('Data berhasil ditambahkan');
-                    document.location.href = '';
-                </script>
-
-        ";
+        header("location: index.php");
     } else {
         echo "Data Gagal Ditambahkan";
     }
@@ -36,33 +30,6 @@ if (isset($_POST["submit"])) {
 <body>
     <h1>Tabel Mahasiswa</h1>
 
-    <form action="/Latihan CRUD/index.php" method="POST">
-        <ul>
-            <li>
-                <label for="nama">Nama :</label>
-                <input type="text" name="nama" id="nama" required>
-            </li>
-            <li>
-                <label for="nim">NIM :</label>
-                <input type="text" name="nim" id="nim" maxlength="12" required>
-            </li>
-            <li>
-                <label for="alamat">Alamat :</label>
-                <input type="text" name="alamat" id="alamat" required>
-            </li>
-            <li>
-                <label for="ttl">TTL :</label>
-                <input type="text" name="ttl" id="ttl">
-            </li>
-            <li>
-                <label for="no_HP">No Hp :</label>
-                <input type="text" name="no_HP" id="no_HP" maxlength="12">
-            </li>
-            <li>
-                <button type="submit" name="submit">SUBMIT</button>
-            </li>
-        </ul>
-    </form>
 
     <table border="1px" cellpadding="10px" cellspacing="0">
         <tr>
@@ -82,12 +49,39 @@ if (isset($_POST["submit"])) {
                 <td><?= $row["ttl"]; ?></td>
                 <td><?= $row["no_HP"]; ?></td>
                 <td>
-                    <a href="">Edit</a> |
-                    <a href="delete.php?id=<?= $row["id"]; ?>">Hapus</a>
+                    <a href="edit.php?id=<?= $row["id"]; ?> ">Edit</a> |
+                    <a href="delete.php?id=<?= $row["id"]; ?> " onclick="return confirm('Yakin akan menghapus data?')">Hapus</a>
                 </td>
             </tr>
         <?php endforeach ?>
     </table>
+    <form action="" method="POST">
+        <ul>
+            <li>
+                <label for="nama">Nama :</label>
+                <input type="text" name="nama" id="nama" placeholder="Vilantino Fernandion" required>
+            </li>
+            <li>
+                <label for="nim">NIM :</label>
+                <input type="text" name="nim" id="nim" placeholder="A11xxxxxxxxx" maxlength="12" required>
+            </li>
+            <li>
+                <label for="alamat">Alamat :</label>
+                <input type="text" name="alamat" id="alamat" placeholder="Jl. xxxxxxxx" required>
+            </li>
+            <li>
+                <label for="ttl">TTL :</label>
+                <input type="text" name="ttl" id="ttl" placeholder="yyyy-mm-dd">
+            </li>
+            <li>
+                <label for="no_HP">No Hp :</label>
+                <input type="text" name="no_HP" id="no_HP" placeholder="089xxxxxxxxx" maxlength="12">
+            </li>
+            <li>
+                <button type="submit" name="submit">SUBMIT</button>
+            </li>
+        </ul>
+    </form>
 </body>
 
 </html>

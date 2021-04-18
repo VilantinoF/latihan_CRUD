@@ -38,4 +38,29 @@ function delete($id) {
 }
 
 
+function edit($data) {
+    global $conn;
+    $id = $data["id"];
+    $nama_mhs = $data["nama"];
+    $nim = $data["nim"];
+    $alamat = $data["alamat"];
+    $ttl = $data["ttl"];
+    $no_hp = $data["no_HP"];
+
+    $sql = "UPDATE mahasiswa SET
+               nama_mhs = '$nama_mhs',
+               nim = '$nim',
+               alamat = '$alamat',
+               ttl = '$ttl',
+               no_HP = '$no_hp'
+			WHERE
+				id = $id
+			";
+
+	mysqli_query($conn, $sql);
+
+	return mysqli_affected_rows($conn);
+
+}
+
 ?>
