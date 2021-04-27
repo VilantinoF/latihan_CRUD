@@ -11,22 +11,62 @@ table {
 }
 
 form {
-    display: grid;
+    margin: auto;
+    margin-top: 100px;
     width: max-content;
-    margin-top: 50px;
-    margin-bottom: 40px;
-    margin-right: auto;
-    margin-left: auto;
-    grid-template-columns: 200px 1fr;
-    grid-gap: 15px;
+}
+
+form label {
+    width: 100px;
+}
+
+form input {
+    border-radius: 6px;
+    height: 18px;
     border: 1px solid black;
 }
 
-form ul li {
-    list-style: none;
-    margin-bottom: 10px;
+form button {
+    margin-top: 20px;
+    background-color: #008CBA;
+    color: #e7e7e7;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
 }
 
-form ul {
-    margin: auto;
+form button:hover {
+    color: #008CBA;
+    background-color: #af8888;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.edit-button, .hapus-button {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    margin-top: 8px;
+    width: 100px;
+    height: 30px;
+}
+
+.hapus-button:hover, .edit-button:hover {
+    color: aliceblue;
+}
+
+.hapus-button {
+    background-color: #f44336;
+}
+
+.edit-button {
+    background-color: #e7e7e7;
 }

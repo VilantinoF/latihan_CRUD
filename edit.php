@@ -3,7 +3,7 @@
 require 'functions.php';
 
 $id = $_GET["id"];
-$data_mhs = query("SELECT * FROM mahasiswa WHERE id = $id")[0];
+$data_mhs = query("SELECT * FROM mhs WHERE id = $id")[0];
 
 
 
@@ -14,12 +14,13 @@ if (isset($_POST["submit"])) {
 				document.location.href = 'index.php';
 			  </script>";
     } else {
+        var_dump($_POST);
         echo "<script>
 				alert('data gagal diubah!');
-				document.location.href = 'index.php';
 			  </script>";
     }
 }
+
 
 ?>
 
@@ -38,34 +39,26 @@ if (isset($_POST["submit"])) {
 
 <body>
 
-    <h1>Edit Data</h1>
-    <form action="" method="POST">
+    <form style="margin-top: 50px;" action="" method="POST">
+        <h1>Edit Data</h1>
         <input type="hidden" name="id" value="<?= $data_mhs["id"]; ?>">
-        <ul>
-            <li>
-                <label for="nama">Nama :</label>
-                <input type="text" name="nama" id="nama" required value="<?= $data_mhs["nama_mhs"]; ?>">
-            </li>
-            <li>
-                <label for="nim">NIM :</label>
-                <input type="text" name="nim" id="nim" maxlength="12" required value="<?= $data_mhs["nim"]; ?>">
-            </li>
-            <li>
-                <label for="alamat">Alamat :</label>
-                <input type="text" name="alamat" id="alamat" required value="<?= $data_mhs["alamat"]; ?>">
-            </li>
-            <li>
-                <label for="ttl">TTL :</label>
-                <input type="text" name="ttl" id="ttl" value="<?= $data_mhs["ttl"]; ?>">
-            </li>
-            <li>
-                <label for="no_HP">No Hp :</label>
-                <input type="text" name="no_HP" id="no_HP" maxlength="12" value="<?= $data_mhs["no_HP"]; ?>">
-            </li>
-            <li>
-                <button type="submit" name="submit">SUBMIT</button>
-            </li>
-        </ul>
+        <div class="form-input">
+            <label for="nim">NIM</label>
+            <input type="text" name="nim" id="nim" placeholder="A11xxxxxxxxx" maxlength="12" value="<?= $data_mhs["nim"]; ?>" required>
+        </div>
+        <div class="form-input">
+            <label for="nama">Nama</label>
+            <input type="text" name="nama" id="nama" placeholder="Vilantino Fernandion" value="<?= $data_mhs["nama"]; ?>" required>
+        </div>
+        <div class="form-input">
+            <label for="alamat">Alamat</label>
+            <input type="text" name="alamat" id="alamat" placeholder="Jl. xxxxxxxx" value="<?= $data_mhs["alamat"]; ?>" required>
+        </div>
+        <div class="form-input">
+            <label for="phone">No Hp</label>
+            <input type="text" name="phone" id="phone" placeholder="089xxxxxxxxx" value="<?= $data_mhs["phone"]; ?>" maxlength="13">
+        </div>
+        <button type="submit" name="submit">UPDATE</button>
     </form>
 </body>
 

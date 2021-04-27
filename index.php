@@ -1,7 +1,7 @@
 <?php
 require 'functions.php';
 
-$data_mhs = query("SELECT * FROM mahasiswa");
+$data_mhs = query("SELECT * FROM mhs");
 
 if (isset($_POST["submit"])) {
     if (add($_POST) > 0) {
@@ -36,51 +36,44 @@ if (isset($_POST["submit"])) {
             <th>NIM</th>
             <th>Nama Mahasiswa</th>
             <th>Alamat</th>
-            <th>TTL</th>
             <th>No HP</th>
+            <th>Time Created</th>
             <th>Aksi</th>
         </tr>
 
         <?php foreach ($data_mhs as $row) : ?>
             <tr>
-                <td><?= $row["nama_mhs"]; ?></td>
                 <td><?= $row["nim"]; ?></td>
+                <td><?= $row["nama"]; ?></td>
                 <td><?= $row["alamat"]; ?></td>
-                <td><?= $row["ttl"]; ?></td>
-                <td><?= $row["no_HP"]; ?></td>
+                <td><?= $row["phone"]; ?></td>
+                <td><?= $row["time_created"]; ?></td>
                 <td>
-                    <a href="edit.php?id=<?= $row["id"]; ?> ">Edit</a> |
-                    <a href="delete.php?id=<?= $row["id"]; ?> " onclick="return confirm('Yakin akan menghapus data?')">Hapus</a>
+                    <a class="edit-button" href="edit.php?id=<?= $row["id"]; ?> ">Edit</a>
+                    <a class="hapus-button" href="delete.php?id=<?= $row["id"]; ?> " onclick="return confirm('Yakin akan menghapus data?')">Hapus</a>
                 </td>
             </tr>
         <?php endforeach ?>
     </table>
     <form action="" method="POST">
-        <ul>
-            <li>
-                <label for="nama">Nama :</label>
-                <input type="text" name="nama" id="nama" placeholder="Vilantino Fernandion" required>
-            </li>
-            <li>
-                <label for="nim">NIM :</label>
-                <input type="text" name="nim" id="nim" placeholder="A11xxxxxxxxx" maxlength="12" required>
-            </li>
-            <li>
-                <label for="alamat">Alamat :</label>
-                <input type="text" name="alamat" id="alamat" placeholder="Jl. xxxxxxxx" required>
-            </li>
-            <li>
-                <label for="ttl">TTL :</label>
-                <input type="text" name="ttl" id="ttl" placeholder="yyyy-mm-dd">
-            </li>
-            <li>
-                <label for="no_HP">No Hp :</label>
-                <input type="text" name="no_HP" id="no_HP" placeholder="089xxxxxxxxx" maxlength="12">
-            </li>
-            <li>
-                <button type="submit" name="submit">SUBMIT</button>
-            </li>
-        </ul>
+        <h3>Input Data</h3>
+        <div class="form-input">
+            <label for="nim">NIM</label>
+            <input type="text" name="nim" id="nim" placeholder="A11xxxxxxxxx" maxlength="12" required>
+        </div>
+        <div class="form-input">
+            <label for="nama">Nama</label>
+            <input type="text" name="nama" id="nama" placeholder="Vilantino Fernandion" required>
+        </div>
+        <div class="form-input">
+            <label for="alamat">Alamat</label>
+            <input type="text" name="alamat" id="alamat" placeholder="Jl. xxxxxxxx" required>
+        </div>
+        <div class="form-input">
+            <label for="phone">No Hp</label>
+            <input type="text" name="phone" id="phone" placeholder="089xxxxxxxxx" maxlength="13">
+        </div>
+        <button type="submit" name="submit">SUBMIT</button>
     </form>
 </body>
 

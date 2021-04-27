@@ -1,6 +1,9 @@
 <?php
 
-$conn = mysqli_connect("localhost", "root", "", "phpdasar");
+$conn = mysqli_connect("localhost", "root", "", "test");
+date_default_timezone_set("Asia/Jakarta");
+$mydate=getdate(date("U"));
+$time_stamp = "$mydate[year]-$mydate[mon]-$mydate[mday]  $mydate[hours]:$mydate[minutes]:$mydate[seconds]";
 
 function query($query) {
     global $conn;
@@ -16,13 +19,13 @@ function query($query) {
 
 function add($data) {
     global $conn;
-    $nama_mhs = $data["nama"];
+    global $time_stamp;
     $nim = $data["nim"];
+    $nama_mhs = $data["nama"];
     $alamat = $data["alamat"];
-    $ttl = $data["ttl"];
-    $no_hp = $data["no_HP"];
+    $phone = $data["phone"];
 
-    $data_mhs = "INSERT INTO mahasiswa VALUES ('', '$nim', '$nama_mhs', '$alamat', '$ttl', '$no_hp')";
+    $data_mhs = "INSERT INTO mhs (id, nim, nama, alamat, phone, time_created) VALUES ('', '$nim', '$nama_mhs', '$alamat', '$phone', '$time_stamp')";
 
     mysqli_query($conn, $data_mhs);
 
@@ -32,7 +35,7 @@ function add($data) {
 
 function delete($id) {
     global $conn;
-    mysqli_query($conn, "DELETE FROM mahasiswa WHERE id=$id");
+    mysqli_query($conn, "DELETE FROM mhs WHERE id=$id");
 
     return mysqli_affected_rows($conn);
 }
@@ -40,19 +43,18 @@ function delete($id) {
 
 function edit($data) {
     global $conn;
+    global $time_stamp;
     $id = $data["id"];
-    $nama_mhs = $data["nama"];
     $nim = $data["nim"];
+    $nama_mhs = $data["nama"];
     $alamat = $data["alamat"];
-    $ttl = $data["ttl"];
-    $no_hp = $data["no_HP"];
+    $phone = $data["phone"];
 
-    $sql = "UPDATE mahasiswa SET
-               nama_mhs = '$nama_mhs',
+    $sql = "UPDATE mhs SET
                nim = '$nim',
+               nama = '$nama_mhs',
                alamat = '$alamat',
-               ttl = '$ttl',
-               no_HP = '$no_hp'
+               phone = '$phone'
 			WHERE
 				id = $id
 			";
