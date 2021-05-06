@@ -1,14 +1,19 @@
 <?php
 require 'functions.php';
 
-$data_mhs = query("SELECT * FROM mhs");
-
 if (isset($_POST["submit"])) {
     if (add($_POST) > 0) {
         header("location: index.php");
     } else {
         echo "Data Gagal Ditambahkan";
     }
+}
+
+if (isset($_POST["search"])) {
+    $data_mhs = search($_POST["keyword"]);
+    echo $data_mhs;
+} else {
+    $data_mhs = query("SELECT * FROM mhs");
 }
 
 ?>
@@ -29,6 +34,14 @@ if (isset($_POST["submit"])) {
 
 <body>
     <h1>Tabel Mahasiswa</h1>
+
+
+    <div class="search">
+        <form action="" method="POST">
+            <input type="text" name="keyword" placeholder="Search data">
+            <button type="submit" name="search">Search</button>
+        </form>
+    </div>
 
 
     <table border="1px" cellpadding="10px" cellspacing="0">
